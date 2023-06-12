@@ -5,6 +5,7 @@
 :set smarttab
 :set softtabstop=4
 :set mouse=a
+:set relativenumber
 
 call plug#begin()
 
@@ -20,4 +21,6 @@ Plug 'nvim-treesitter/nvim-treesitter-context'
 call plug#end()
 
 let g:airline_theme='base16_nord'
-
+let g:copilot_filetypes = {
+			\ 'yaml': v:true,
+			\ }
