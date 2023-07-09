@@ -34,8 +34,20 @@ let g:copilot_filetypes = {
 
 local lsp = require('lsp-zero').preset({})
 
+lsp.set_preferences({
+	sign_icons = {}
+})
+
 lsp.on_attach(function(client, bufnr)
-	lsp.default_keymaps({buffer = bufnr})
+	local opts = {buffer = bufnr, remap = false}
+
 end)
 
 lsp.setup()
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+	vim.lsp.diagnostic.on_publish_diagnostics, {
+		virtual_text = true,
+		signs = false,
+		underline = false,
+})
+
