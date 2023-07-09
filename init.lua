@@ -1,4 +1,5 @@
 vim.cmd([[
+autocmd InsertEnter * :LspStart
 set number
 set autoindent
 set tabstop=4
