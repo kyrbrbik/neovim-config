@@ -10,6 +10,7 @@ set mouse=a
 set relativenumber
 call plug#begin()
 
+
 Plug 'arcticicestudio/nord-vim'
 Plug 'https://github.com/vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -22,6 +23,8 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'VonHeikemen/lsp-zero.nvim', { 'branch': 'v2.x' }
 Plug 'williamboman/mason.nvim'
 Plug 'williamboman/mason-lspconfig.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
 
 
 call plug#end()
@@ -31,6 +34,11 @@ let g:copilot_filetypes = {
 			\ 'yaml': v:true,
 			\ }
 ]])
+
+vim.g.mapleader = " "
+vim.keymap.set("n", "<leader>ff", "<cmd>lua require('telescope.builtin').find_files()<cr>")
+vim.keymap.set("n", "<leader>fg", "<cmd>lua require('telescope.builtin').live_grep()<cr>")
+
 
 local lsp = require('lsp-zero').preset({})
 
@@ -52,4 +60,14 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 		update_in_insert = true,
 
 })
+
+lsp.configure("yamlls", {
+	settings = {
+		yaml = {
+			keyOrdering = false
+		}
+	}
+})
+
+local builtin = require('telescope.builtin')
 
