@@ -39,6 +39,14 @@ vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>ff", "<cmd>lua require('telescope.builtin').find_files()<cr>")
 vim.keymap.set("n", "<leader>fg", "<cmd>lua require('telescope.builtin').live_grep()<cr>")
 
+local telescope = require('telescope')
+telescope.setup {
+	pickers = {
+		find_files = {
+			hidden = true
+		}
+	}
+}
 
 local lsp = require('lsp-zero').preset({})
 
