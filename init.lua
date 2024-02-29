@@ -8,7 +8,9 @@ set smarttab
 set softtabstop=4
 set mouse=a
 set relativenumber
+set noswapfile
 call plug#begin()
+
 
 
 Plug 'arcticicestudio/nord-vim'
@@ -25,7 +27,7 @@ Plug 'williamboman/mason.nvim'
 Plug 'williamboman/mason-lspconfig.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
-
+Plug 'jiangmiao/auto-pairs'
 
 call plug#end()
 
