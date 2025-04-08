@@ -48,13 +48,3 @@ set softtabstop=4
 set noswapfile
 set clipboard+=unnamedplus
 ]])
-
-vim.api.nvim_create_augroup("GoFormat", { clear = true })
-vim.api.nvim_create_autocmd("BufWritePre", {
-	pattern = "*.go",
-	callback = function()
-		vim.cmd("silent! !gofmt -w %")
-		vim.cmd("edit!")
-	end,
-	group = "GoFormat",
-})
