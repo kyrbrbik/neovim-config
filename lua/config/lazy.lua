@@ -43,9 +43,21 @@ set smarttab
 set autoindent
 set tabstop=4
 set shiftwidth=4
+set expandtab
 set softtabstop=4
 set noswapfile
 set clipboard+=unnamedplus
 ]])
 
 vim.cmd("let g:netrw_liststyle=3")
+
+vim.diagnostic.config({
+    virtual_text = {
+        prefix = "●",
+        spacing = 0,
+    },
+    signs = true,
+    underline = true,
+    update_in_insert = false,
+    severity_sort = true,
+})
