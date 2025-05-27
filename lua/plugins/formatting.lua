@@ -11,7 +11,6 @@ return {
 				go = { "gofmt" },
 				lua = { "stylua" },
 				json = { "jq" },
-				yaml = { "prettier" },
 			},
 		})
 
