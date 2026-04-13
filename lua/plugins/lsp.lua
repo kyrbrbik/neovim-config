@@ -61,8 +61,9 @@ return {
 				local lsp_attach = function(client, bufnr)
 					local opts = { buffer = bufnr }
 
-					vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", opts)
-					vim.keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", opts)
+				vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", opts)
+				vim.keymap.set("n", "gl", "<cmd>lua vim.diagnostic.open_float()<cr>", opts)
+				vim.keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", opts)
 					vim.keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", opts)
 					vim.keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<cr>", opts)
 					vim.keymap.set("n", "go", "<cmd>lua vim.lsp.buf.type_definition()<cr>", opts)
@@ -78,6 +79,33 @@ return {
 					lsp_attach = lsp_attach,
 					capabilities = require("cmp_nvim_lsp").default_capabilities(),
 				})
+
+				-- Configure diagnostic display with wrapped messages
+				vim.diagnostic.config({
+					virtual_text = true,
+					float = {
+						border = "rounded",
+						source = true,
+						header = "",
+						prefix = "",
+						max_width = 80,
+						wrap = true,
+						wrap_at = 80,
+					},
+					severity_sort = true,
+				})
+
+				-- Configure hover window wrapping
+				vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
+					vim.lsp.handlers.hover,
+					{ border = "rounded", max_width = 80, wrap = true, wrap_at = 80 }
+				)
+
+				-- Configure signature help wrapping
+				vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
+					vim.lsp.handlers.signature_help,
+					{ border = "rounded", max_width = 80, wrap = true, wrap_at = 80 }
+				)
 
 				require("mason-lspconfig").setup({
 					ensure_installed = {},

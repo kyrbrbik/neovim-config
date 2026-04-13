@@ -1,3 +1,4 @@
 return {
-	"arcticicestudio/nord-vim",
+	--"arcticicestudio/nord-vim",
+    "rebelot/kanagawa.nvim",
 }

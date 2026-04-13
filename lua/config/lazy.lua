@@ -36,7 +36,7 @@ require("lazy").setup({
 })
 
 vim.cmd([[
-colorscheme nord
+colorscheme kanagawa
 set number
 set relativenumber
 set smarttab
